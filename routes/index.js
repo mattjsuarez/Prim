@@ -18,6 +18,13 @@ router.get('/', function(req, res) {
   res.render('../views/index');
 });
 
+router.get('/writeToDatabase', function(req, res){
+	var id = req.param('id');
+	var date = req.param('date');
+	var docID = req.param('docID');
+	c.query("INSERT INTO DoctorPatients (PatientID, DoctorID, LastVisit) VALUES('" + id + "','" + docID + "','" + date + "');");
+})
+
 router.get('/patientInfo/:id', function(req, res){
 	var id = req.param("id");
 	var toReturn = "";
@@ -29,7 +36,7 @@ router.get('/patientInfo/:id', function(req, res){
 			patientInfo = c.query("SELECT PCPid FROM Patients WHERE Id = :id", {id:id});
 			patientInfo.on('result', function(res) {
 				res.on('row', function(row){
-					obj = JSON.stringify(insepct(row));
+					obj = JSON.stringify(inspect(row));
 					toReturn = toReturn + obj;
 					res.send(toReturn);
 				});
