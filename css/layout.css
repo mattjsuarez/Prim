@@ -2,7 +2,10 @@
 	padding: 0px;
 	margin: 0px;
 }
-header {
+body {
+	height:100%;
+}
+header, footer {
 	height:60px;
 }
 header>a {
@@ -17,19 +20,9 @@ a>i {
 	text-align: center;
 }
 .panelPart {
-	border:1px solid red;
 	float:left;
+	overflow: auto;
 }
-.container {
+.container,.chartContainer,.notifications {
 	float:left;
-	padding:15px;
-	height:10px;
-}
-.chartContainer {
-	float: left;
-	border:1px solid blue;
-}
-.notifications {
-	float: left;
-	border:1px solid orange;
 }
