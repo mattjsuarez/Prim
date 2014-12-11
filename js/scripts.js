@@ -1,8 +1,12 @@
 //Main function when body loads
 $(document).ready(function() {
+    initElements();
 	panelExpand();
 });
 
+var initElements = function() {
+    var datepicker = $.UIkit.datepicker(element, {});
+}
 var panelExpand = function() {
 	$("#expandInfo").click(function() {
 		var userID = $("#userID").text();
