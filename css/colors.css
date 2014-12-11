@@ -11,3 +11,7 @@ a>i {
 	background-image:url('../img/panelBack.png');
 	height: 200px;
 }
+#expandInfo {
+	background: transparent;
+	font-size: 2em;
+}
