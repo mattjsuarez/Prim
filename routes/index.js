@@ -18,6 +18,26 @@ router.get('/', function(req, res) {
   res.render('../views/index');
 });
 
+router.get('/patientInfo/:id', function(req, res){
+	var id = req.param("id");
+	var toReturn = "";
+	var patientInfo = c.query("SELECT Name FROM Patients WHERE Id = :id", {id:id});
+	patientInfo.on('result', function(res) {
+		res.on('row', function(row){
+			var obj = JSON.stringify(inspect(row));
+			toReturn = toReturn + obj + "," + id + ",";
+			patientInfo = c.query("SELECT PCPid FROM Patients WHERE Id = :id", {id:id});
+			patientInfo.on('result', function(res) {
+				res.on('row', function(row){
+					obj = JSON.stringify(insepct(row));
+					toReturn = toReturn + obj;
+					res.send(toReturn);
+				});
+			});
+		});
+	} );
+});
+
 //DOCTOR INFO DUMP
 //retrieve a patient's information by the doctor's id number
 router.get('/retrieveDoctorByID/:id', function(req, res) {
@@ -79,7 +99,7 @@ router.get('/retrieveGraphData/:id', function(req, res) {
 		res.on('row', function(row) {
 			var obj0 = JSON.stringify(inspect(row));
 			dataArray[0] = obj0;
-			res.on('end') something something second/third/fourth query. res.send(array)
+			//res.on('end') something something second/third/fourth query. res.send(array)
 		});
 	});
 	var cholesterol = c.query("SELECT Cholesterol FROM Patients WHERE Id= :id", {id:id});
@@ -94,12 +114,12 @@ router.get('/retrieveGraphData/:id', function(req, res) {
 });
 
 function secondQuery(dataArray,res,id) {
-	var
+	//var
 }
 
 
 module.exports = router;
-router gives 4 basic counts for fat/ cholesteral, etcc...
-4 sets of arrays for the graph - fat, cholesteral, weight, height
+//router gives 4 basic counts for fat/ cholesteral, etcc...
+//4 sets of arrays for the graph - fat, cholesteral, weight, height
 
-AI - shirnova. NOT HEFERNAN
+//AI - shirnova. NOT HEFERNAN
