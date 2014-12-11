@@ -20,7 +20,7 @@ router.get('/', function(req, res) {
 
 //DOCTOR INFO DUMP
 //retrieve a patient's information by the doctor's id number
-router.get('retrieveDoctorByID/:id', function(req, res) {
+router.get('/retrieveDoctorByID/:id', function(req, res) {
 	var id = req.param("id");
 	var patientInfo = c.query("SELECT * FROM Doctors WHERE Id= :id", {id:id}); //generate a query asks database for a doctor by doctor's id
 	patientInfo.on('result', function(res) {
@@ -33,7 +33,7 @@ router.get('retrieveDoctorByID/:id', function(req, res) {
 
 //DOCTOR INFO DUMP
 //retrieve a doctor's information by the doctor's name
-router.get('retrieveDoctorByName/:name', function(req, res) {
+router.get('/retrieveDoctorByName/:name', function(req, res) {
 	var name = req.param("name"); //retrieve the value from the parameter name
 	var doctorInfo = c.query("SELECT * FROM Doctors WHERE Name= :nam", {nam:name}); //generate a query. asks database for a doctor given a name
 	doctorInfo.on('result', function(res) {
@@ -46,7 +46,7 @@ router.get('retrieveDoctorByName/:name', function(req, res) {
 
 //PATIENT INFO DUMP
 //retrieve a patient's information by the patient's id number
-router.get('retrievePatientByID/:id', function(req, res) {
+router.get('/retrievePatientByID/:id', function(req, res) {
 	var id = req.param("id");
 	var patientInfo = c.query("SELECT * FROM Patients WHERE Id= :id", {id:id}); //generate a query asks database for a patient by patient's id
 	patientInfo.on('result', function(res) {
@@ -59,7 +59,7 @@ router.get('retrievePatientByID/:id', function(req, res) {
 
 //PATIENT INFO DUMP
 //retrieve a patient's information by the patient's name
-router.get('retrievePatientByID/:name', function(req, res) {
+router.get('/retrievePatientByID/:name', function(req, res) {
 	var name = req.param("name");
 	var patientInfo = c.query("SELECT * FROM Patients WHERE Name= :nam", {nam:name}); //generate a query asks database for a patient by patient's id
 	patientInfo.on('result', function(res) {
@@ -70,18 +70,32 @@ router.get('retrievePatientByID/:name', function(req, res) {
 	});
 });
 
-router.get('retrieveGraphData', function(req, res) {
+router.get('/retrieveGraphData/:id', function(req, res) {
+	var id = req.param("id");
 	var i = 0;
 	var dataArray = new Array(4);
-	var data = c.query("");
-	data.on('result', function(res) {
+	var age = c.query("SELECT Age FROM Patients WHERE Id= :id", {id:id});
+	age.on('result', function(res) {
 		res.on('row', function(row) {
-			var obj = JSON.stringify(inspect(row));
-			res.send(obj);
+			var obj0 = JSON.stringify(inspect(row));
+			dataArray[0] = obj0;
+			res.on('end') something something second/third/fourth query. res.send(array)
 		});
 	});
+	var cholesterol = c.query("SELECT Cholesterol FROM Patients WHERE Id= :id", {id:id});
+	cholesterol.on('result', function(res) {
+		res.on('row', function(row) {
+			var obj1 = JSON.stringify(inspect(row));
+			dataArray[1] = obj1;
+		});
+	});
+	var height = c.query("SELECT Height FROM Patients WHERE Id= :id", {id:id});
+	var weight = c.query("SELECT Weight FROM Patients WHERE Id= :id", {id:id});
 });
 
+function secondQuery(dataArray,res,id) {
+	var
+}
 
 
 module.exports = router;
