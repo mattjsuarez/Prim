@@ -3,40 +3,49 @@
 <head>
 	<title>Your Dashboard</title>
 	<link rel="stylesheet" type="text/css" href="css/layout.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="css/colors.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.css" media="all" />
 	<link rel="stylesheet" type="text/css" href="css/uikit.css" />
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script src="js/uikit.js"></script>
 </head>
 <body>
 	<header class="uk-width-1-1">
-		<a href="#sideNav" data-uk-offcanvas>...</a>
+		<a href="#sideNav" data-uk-offcanvas><i class="fa fa-gears"></i></a>
 		<section id="sideNav" class="uk-offcanvas">
 			<article class="uk-offcanvas-bar">
-				Testing the side nav
+				<article id="userProfile">
+				<img src="" alt="User profile" />
+				<p>Patient name: </p>
+				<p>Patient ID: </p>
+				<p>Hospital: </p>
+				<p>Doctor: </p>
+				<a href="schedule">Schedule an appointment</a>
+				</article>
 			</article>
 		</section>
 		<!--Header across all of page - yay for no content for now-->
 	</header>
-	<section>
+	<section id="panelMain">
 
 		<!--Left DIV-->
-		<article class="uk-width-1-2">
+		<article class="uk-width-1-2 panelPart">
 			<section class="uk-width-1-1">
-				<article class="uk-width-1-2"></article> <!--Data container 1-->
-				<article class="uk-width-1-2"></article> <!--Data container 2-->
+				<article class="uk-width-1-2 container"></article> <!--Data container 1-->
+				<article class="uk-width-1-2 container"></article> <!--Data container 2-->
 			</section>
-			<article class="uk-width-1-1"></article>	 <!--Chart container left-->
-			<article class="uk-width-1-1"></article>	 <!--Warnings container left-->
+			<article class="uk-width-1-1 chartContainer"></article>	 <!--Chart container left-->
+			<article class="uk-width-1-1 notifications"></article>	 <!--Warnings container left-->
 		</article>
 
 		<!--Right DIV-->
-		<article class="uk-width-1-2">
+		<article class="uk-width-1-2 panelPart">
 			<section class="uk-width-1-1">
-				<article class="uk-width-1-2"></article> <!--Data container 3-->
-				<article class="uk-width-1-2"></article> <!--Data container 4-->
+				<article class="uk-width-1-2 container"></article> <!--Data container 3-->
+				<article class="uk-width-1-2 container"></article> <!--Data container 4-->
 			</section>
-			<article class="uk-width-1-1"></article>	 <!--Chart container right-->
-			<article class="uk-width-1-1"></article>	 <!--Warnings container right-->
+			<article class="uk-width-1-1 chartContainer"></article>	 <!--Chart container right-->
+			<article class="uk-width-1-1 notifications"></article>	 <!--Warnings container right-->
 		</article>
 
 	</section>
