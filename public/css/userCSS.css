@@ -17,6 +17,20 @@ header>a {
 i {
 	padding:10px;
 }
+#sideNav {
+	color:white;
+	text-align: center;
+}
+#sideNav>article {
+	padding-top:50px;
+}
+.infoText {
+	text-decoration: none;
+	font-size: 1.2em;
+}
+.uk-datepicker {
+	left:-227px !important;
+}
 #mainPanel {
 	border:1px solid green;
 }
@@ -31,4 +45,7 @@ i {
 .container {
 	border:1px solid white;
 	height:150px;
+}
+.chart {
+	height:400px !important;
 }

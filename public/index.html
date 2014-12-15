@@ -18,18 +18,18 @@
 	<section id="sideNav" class="uk-offcanvas">
 		<article class="uk-offcanvas-bar">
 			<article id="userProfile">
-				<img src="" alt="User profile" />
 				<p id="userName"></p>
 				<p id="userDOB"></p>
 				<p id="userGender"></p>
 				<p id="userID"></p>
 				<p id="userInsurance"></p>
-				<a id="scheduleLink" href="#">Schedule an appointment</a>
+				<p class="infoText">Schedule an appointment</p>
 				<form id="scheduleForm" class="uk-form">
 					<div class="uk-autocomplete uk-form" data-uk-autocomplete="{source:'js/doctors.json'}">
-						<input type="text">
+						<input type="text" placeholder="Choose doctor">
 					</div>
-					<input type="text" data-uk-datepicker="{format:'DD.MM.YYYY'}">					
+					<input type="text" placeholder="Choose day" data-uk-datepicker="{format:'YYYY-MM-DD'}">
+					<input type="submit" value="Submit request">					
 				</form>
 
 			</article>
@@ -53,7 +53,7 @@
 			<button>Weight</button>
 		</article>
 	
-		<article class="uk-width-1-1 container" id="leftGraph">Chart 1/2</article>
+		<article class="uk-width-1-1 container chart" id="leftGraph">Chart 1/2</article>
 
 	</section>
 	<section class="uk-width-1-2" style="background-color:green;">
@@ -68,10 +68,10 @@
 		
 		<article class="uk-width-1-1">
 			<button>Cholesterol</button>
-			<button>Data 4</button>
+			<button>Blood Sugar</button>
 		</article>
 		
-		<article class="uk-width-1-1 container">Chart 3/4</article>
+		<article class="uk-width-1-1 container chart" id="rightGraph">Chart 3/4</article>
 
 	</section>
 </section>

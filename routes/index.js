@@ -18,12 +18,13 @@ router.get('/', function(req, res) {
   res.render('../views/index');
 });
 
-router.get('/writeToDatabase/:id/:date/:docID', function(req, res){
-	var id = req.param('id');
-	var date = req.param('date');
-	var docID = req.param('docID');
-	c.query("INSERT INTO DoctorPatients (PatientID, DoctorID, LastVisit) VALUES('" + id + "','" + docID + "','" + date + "');");
-})
+router.get('/schedule/:docID/:date/:userID', function(req, res) {
+	var docID = req.param("docID");
+	var date = req.param("date");
+	var userID = req.param("userID");
+	console.log(typeof(date));
+	c.query("INSERT INTO DoctorPatients (PatientID,DoctorID,LastVisit) VALUES (:userID,:docID,:date)",{userID:userID,docID:docID,userID:userID});
+});
 
 router.get('/patientInfo/:id', function(req, res){
 	var id = req.param("id");

@@ -1,10 +1,8 @@
 var userID = 0;	//Hardcoded for demo and debugging purposes
 
 $(document).ready(function() {
-	//requestSideBar();
-	$("button").click(function() {
 		requestSideBar();
-	})
+		appointmentForm();
 });
 
 var requestSideBar = function() {
@@ -46,25 +44,43 @@ var initialGraphs = function(leftGraph,rightGraph) {
 	var rightData = rightGraph.map(function(item) {
 		return parseInt(item,10);
 	});
-	var $leftContainer = $("#leftGraph");
-	var $rightContainer = $("#rightGraph");
-	var leftOptions = {
-		chart: {
-            renderTo: $leftContainer,
+	$('#leftGraph').highcharts({
+        chart: {
             type: 'column'
         },
-        series: [{}]
-	};
-	leftOptions.series[0].data = leftData;
-
-	var rightOptions = {
-		chart: {
-            renderTo: $rightContainer,
+        xAxis: {
+            categories: ['August','September','October','November','December']
+        },
+        series: [{
+            name: 'Height',
+            data: leftData
+        }]
+    });
+	$('#rightGraph').highcharts({
+        chart: {
             type: 'column'
         },
-        series: [{}]
-	};
-	rightOptions.series[0].data = rightData;
-	var leftChart = new Highcharts.Chart(leftOptions);
-	//var rightChart = new Highcharts.Chart(rightOptions);
+        xAxis: {
+            categories: ['August','September','October','November','December']
+        },
+        series: [{
+            name: 'Height',
+            data: rightData
+        }]
+    });
 };
+var appointmentForm = function() {
+	$("#scheduleForm").submit(function(e) {
+		console.log($("input")[1].value);
+		var request = $.ajax({
+			url:"/schedule/"+$("input")[0].value+"/"+$("input")[1].value+"/"+userID,
+			success:function() {
+				alert("Successfully submitted appointment request!");
+			},
+			fail:function(jqXHR, textStatus, errorThrown) {
+				console.log("AJAX request error thrown:"+errorThrown);
+			}
+		});
+		return false;
+	});
+}
