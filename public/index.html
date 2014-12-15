@@ -12,9 +12,11 @@
 	<script src="js/uikit.js"></script>
 	<script src="js/components/datepicker.js"></script>
 </head>
+
 <body>
 <header class="uk-width-1-1">
 	<a href="#sideNav" data-uk-offcanvas><i class="fa fa-gears"></i></a>
+	<!-- Side bar for scheduling appointment setc. -->
 	<section id="sideNav" class="uk-offcanvas">
 		<article class="uk-offcanvas-bar">
 			<article id="userProfile">
@@ -23,6 +25,7 @@
 				<p id="userGender"></p>
 				<p id="userID"></p>
 				<p id="userInsurance"></p>
+				<!-- form to scheduule a new apointment -->
 				<p class="infoText">Schedule an appointment</p>
 				<form id="scheduleForm" class="uk-form">
 					<div class="uk-autocomplete uk-form" data-uk-autocomplete="{source:'js/doctors.json'}">
@@ -37,6 +40,7 @@
 	</section>
 </header>
 
+<!-- chart of User's weight over time -->
 <section id="mainPanel" class="uk-width-1-1">
 	<section class="uk-width-1-2" style="background-color:blue;">
 		<article class="uk-width-1-2 container">
@@ -56,6 +60,8 @@
 		<article class="uk-width-1-1 container chart" id="leftGraph">Chart 1/2</article>
 
 	</section>
+
+	<!-- chart for user's cholesterol over time-->
 	<section class="uk-width-1-2" style="background-color:green;">
 		<article class="uk-width-1-2 container">
 			Cholesterol</br>
