@@ -1,0 +1,14 @@
+#!/usr/bin/env node
+var debug = require('debug')('cs4241nodesetup');
+var app = require('../app');
+
+app.set('port', process.env.PORT || 4053);
+
+var server = app.listen(app.get('port'), function() {
+  debug('Express server listening on port ' + server.address().port);
+});
+app.post('/save',function(req,res) {
+	console.log(req.body.objectData);
+	res.contentType('json');
+	res.send({some:JSON.stringify({response:'json'}) });
+});

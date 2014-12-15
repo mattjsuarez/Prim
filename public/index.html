@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Your Dashboard</title>
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="css/uikit.css" />
+	<link rel="stylesheet" type="text/css" href="css/components/datepicker.css" />
+	<link rel="stylesheet" type="text/css" href="css/userCSS.css" media="all" />
+	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="img/favicon.ico" type="image/x-icon">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="js/uikit.js"></script>
+	<script src="js/components/datepicker.js"></script>
+</head>
+<body>
+<header class="uk-width-1-1">
+	<a href="#sideNav" data-uk-offcanvas><i class="fa fa-gears"></i></a>
+	<section id="sideNav" class="uk-offcanvas">
+		<article class="uk-offcanvas-bar">
+			<article id="userProfile">
+				<img src="" alt="User profile" />
+				<p id="userName"></p>
+				<p id="userDOB"></p>
+				<p id="userGender"></p>
+				<p id="userID"></p>
+				<p id="userInsurance"></p>
+				<a id="scheduleLink" href="#">Schedule an appointment</a>
+				<form id="scheduleForm" class="uk-form">
+					<div class="uk-autocomplete uk-form" data-uk-autocomplete="{source:'js/doctors.json'}">
+						<input type="text">
+					</div>
+					<input type="text" data-uk-datepicker="{format:'DD.MM.YYYY'}">					
+				</form>
+
+			</article>
+		</article>
+	</section>
+</header>
+
+<section id="mainPanel" class="uk-width-1-1">
+	<section class="uk-width-1-2" style="background-color:blue;">
+		<article class="uk-width-1-2 container">
+			Height</br>
+			<p id="userHeight"></p>
+		</article>
+		<article class="uk-width-1-2 container">
+			Weight</br>
+			<p id="userWeight"></p>
+		</article>
+
+		<article class="uk-width-1-1">
+			<button>Height</button>
+			<button>Weight</button>
+		</article>
+	
+		<article class="uk-width-1-1 container" id="leftGraph">Chart 1/2</article>
+
+	</section>
+	<section class="uk-width-1-2" style="background-color:green;">
+		<article class="uk-width-1-2 container">
+			Cholesterol</br>
+			<p id="userCholesterol"></p>
+		</article>
+		<article class="uk-width-1-2 container">
+			Blood Sugar</br>
+			<p id="userBloodSugar"></p>
+		</article>
+		
+		<article class="uk-width-1-1">
+			<button>Cholesterol</button>
+			<button>Data 4</button>
+		</article>
+		
+		<article class="uk-width-1-1 container">Chart 3/4</article>
+
+	</section>
+</section>
+<footer class="uk-container"></footer>
+</body>
+<script src="js/highcharts.js"></script>
+<script src="js/userJS.js"></script>
+</html>

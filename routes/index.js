@@ -18,7 +18,7 @@ router.get('/', function(req, res) {
   res.render('../views/index');
 });
 
-router.get('/writeToDatabase', function(req, res){
+router.get('/writeToDatabase/:id/:date/:docID', function(req, res){
 	var id = req.param('id');
 	var date = req.param('date');
 	var docID = req.param('docID');
@@ -45,53 +45,14 @@ router.get('/patientInfo/:id', function(req, res){
 	} );
 });
 
-//DOCTOR INFO DUMP
-//retrieve a patient's information by the doctor's id number
-router.get('/retrieveDoctorByID/:id', function(req, res) {
-	var id = req.param("id");
-	var patientInfo = c.query("SELECT * FROM Doctors WHERE Id= :id", {id:id}); //generate a query asks database for a doctor by doctor's id
-	patientInfo.on('result', function(res) {
-		res.on('row', function(row) {
+router.get('/patientData/:patID',function(req,res) {
+	var patID = req.param("patID");
+	console.log(patID);
+	var patientInfo = c.query("SELECT * FROM Patients WHERE Id=:id", {id:patID}); //generate a query asks database for a patient by patient's id
+	patientInfo.on('result', function(patRow) {
+		patRow.on('row', function(row) {
 			var obj = JSON.stringify(inspect(row));
-			res.send(obj); //return doctor information
-		});
-	});
-});
-
-//DOCTOR INFO DUMP
-//retrieve a doctor's information by the doctor's name
-router.get('/retrieveDoctorByName/:name', function(req, res) {
-	var name = req.param("name"); //retrieve the value from the parameter name
-	var doctorInfo = c.query("SELECT * FROM Doctors WHERE Name= :nam", {nam:name}); //generate a query. asks database for a doctor given a name
-	doctorInfo.on('result', function(res) {
-		res.on('row',function(row) {
-			var obj = JSON.stringify(inspect(row));
-			res.send(obj); //return the doctor information
-		});
-	});
-});
-
-//PATIENT INFO DUMP
-//retrieve a patient's information by the patient's id number
-router.get('/retrievePatientByID/:id', function(req, res) {
-	var id = req.param("id");
-	var patientInfo = c.query("SELECT * FROM Patients WHERE Id= :id", {id:id}); //generate a query asks database for a patient by patient's id
-	patientInfo.on('result', function(res) {
-		res.on('row', function(row) {
-			var obj = JSON.stringify(inspect(row));
-			res.send(obj); //return patient information
-		});
-	});
-});
-
-//PATIENT INFO DUMP
-//retrieve a patient's information by the patient's name
-router.get('/retrievePatientByID/:name', function(req, res) {
-	var name = req.param("name");
-	var patientInfo = c.query("SELECT * FROM Patients WHERE Name= :nam", {nam:name}); //generate a query asks database for a patient by patient's id
-	patientInfo.on('result', function(res) {
-		res.on('row', function(row) {
-			var obj = JSON.stringify(inspect(row));
+			console.log(obj);
 			res.send(obj); //return patient information
 		});
 	});
@@ -120,13 +81,4 @@ router.get('/retrieveGraphData/:id', function(req, res) {
 	var weight = c.query("SELECT Weight FROM Patients WHERE Id= :id", {id:id});
 });
 
-function secondQuery(dataArray,res,id) {
-	//var
-}
-
-
 module.exports = router;
-//router gives 4 basic counts for fat/ cholesteral, etcc...
-//4 sets of arrays for the graph - fat, cholesteral, weight, height
-
-//AI - shirnova. NOT HEFERNAN

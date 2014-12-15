@@ -1,0 +1,34 @@
+* {
+	margin:0px;
+	padding:0px;
+}
+body {
+	background-color: black;
+	text-align: center;
+}
+header{
+	height:50px;
+	text-align: left;
+}
+header>a {
+	color:white;
+	font-size: 2em
+}
+i {
+	padding:10px;
+}
+#mainPanel {
+	border:1px solid green;
+}
+#mainPanel>section {
+	float:left;
+	overflow:auto;
+	height:700px;
+}
+#mainPanel>section>article {
+	float:left;
+}
+.container {
+	border:1px solid white;
+	height:150px;
+}
