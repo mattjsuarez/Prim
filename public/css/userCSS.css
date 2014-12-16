@@ -69,3 +69,9 @@ i {
 .selected {
 	color:#8F002E !important;
 }
+footer {
+	padding:5px;
+	text-align: right;
+	font-size: 1.5em;
+	color:white;
+}

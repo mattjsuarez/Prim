@@ -18,15 +18,14 @@ router.get('/', function(req, res) {
   res.render('../views/index'); //render jade template in the views directory
 });
 
-router.get('/schedule/:docID/:date/:userID', function(req, res) { //query the database. insert information into DoctorPatients table
-	var docID = req.param("docID"); //retrieve the docID parameter
+router.get('/schedule/:date/:userID', function(req, res) { //query the database. insert information into DoctorPatients table
+	var response = res;				//needed to do this for proper response sending
 	var date = req.param("date"); //retrieve the date parameter
+	console.log(date);
 	var userID = req.param("userID"); //retrieve the userID parameter
-	c.query("INSERT INTO DoctorPatients (PatientID,DoctorID,LastVisit) VALUES (:userID,:docID,:date)",{userID:userID,docID:docID,date:date}).on('result', function(res) {
-		res.on('error', function(err) { //if the query returns an error,...
-			res.status(409).send("Appointment scheduling conflict!");
-		}).on('end', function(info) { //if the query ends successfully,...
-			console.log('Successful termination of query');
+	var appQuery = c.query("INSERT INTO DoctorPatients (PatientID,DoctorID,LastVisit) VALUES (:userID,0,:date)",{userID:userID,date:date}).on('result', function(res) {
+	appQuery.on('end',function(info) {
+			response.send("Successfully scheduled appointment.");
 		});
 	}); /* generate a query
 	that inserts information into the database*/
