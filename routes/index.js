@@ -15,7 +15,7 @@ c.connect({
 
 //connect to index.jade file to render it
 router.get('/', function(req, res) {
-  res.render('../views/index'); //render jade template in the views directory
+  res.render('../views/index.jade'); //render jade template in the views directory
 });
 
 router.get('/schedule/:date/:userID', function(req, res) { //query the database. insert information into DoctorPatients table
