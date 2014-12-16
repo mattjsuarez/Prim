@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Your Dashboard</title>
+<head> <!--start head-->
+	<title>Your Dashboard</title> <!--title of page-->
+	 <!--import style sheets-->
 	<link rel="stylesheet" type="text/css" href="css/font-awesome.css" media="all" />
 	<link rel="stylesheet" type="text/css" href="css/uikit.css" />
 	<link rel="stylesheet" type="text/css" href="css/components/datepicker.css" />
 	<link rel="stylesheet" type="text/css" href="css/userCSS.css" media="all" />
-	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-	<link rel="icon" href="img/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">  <!--import an icon-->
+	<link rel="icon" href="img/favicon.ico" type="image/x-icon"> <!--import an icon-->
+	 <!--import JavaScript and AJAX that we will use-->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script src="js/uikit.js"></script>
 	<script src="js/components/datepicker.js"></script>
-</head>
-<body>
-<header class="uk-width-1-1">
-	<a href="#sideNav" data-uk-offcanvas><i class="fa fa-gears"></i></a>
-	<section id="sideNav" class="uk-offcanvas">
+</head> <!--end head-->
+<body> <!--start body-->
+<header class="uk-width-1-1"> <!--start header-->
+	<a href="#sideNav" data-uk-offcanvas><i class="fa fa-gears"></i></a> <!--hyperlink tag-->
+	<section id="sideNav" class="uk-offcanvas"> <!--create a section of the website. It's a sidebar for creating appointments-->
 		<article class="uk-offcanvas-bar">
 			<article id="userProfile">
 				<p id="userName"></p>
@@ -23,50 +25,50 @@
 				<p id="userGender"></p>
 				<p id="userID"></p>
 				<p id="userInsurance"></p>
-				<p class="infoText">Schedule an appointment</p>
-				<form id="scheduleForm" class="uk-form">
-					<input type="text" placeholder="Choose doctor">
-					<input type="text" placeholder="Choose day" data-uk-datepicker="{format:'YYYY-MM-DD'}">
-					<input type="submit" value="Submit request">					
-				</form>
+				<p class="infoText">Schedule an appointment</p> <!--schedule an appointment-->
+				<form id="scheduleForm" class="uk-form"> <!--a form for submitting your doctor's name and the date for the appointment-->
+					<input type="text" placeholder="Choose doctor"> <!--input where you post your doctor's name-->
+					<input type="text" placeholder="Choose day" data-uk-datepicker="{format:'YYYY-MM-DD'}"> <!--input where you select a date from a calendar-->
+					<input type="submit" value="Submit request"> <!--submit button to submit your request to make an appointment-->
+				</form> <!--end form-->
 
 			</article>
 		</article>
-	</section>
-</header>
+	</section> <!--end sidebar section-->
+</header> <!--end header-->
 
-<section id="mainPanel" class="uk-width-1-1">
-	<section class="uk-width-1-2" style="background-color:blue;">
-		<article class="uk-width-1-2 container">
+<section id="mainPanel" class="uk-width-1-1">  <!--create another section-->
+	<section class="uk-width-1-2" style="background-color:blue;">  <!--create a section on the left containing Heigth and Weight information and charts-->
+		<article class="uk-width-1-2 container"> <!--create a Height article-->
 			Height</br>
 			<p id="userHeight"></p>
 		</article>
-		<article class="uk-width-1-2 container">
+		<article class="uk-width-1-2 container"> <!--create a Weight article-->
 			Weight</br>
 			<p id="userWeight"></p>
 		</article>
 
-		<article class="uk-width-1-1">
-			<button class="updateGraph" data-graph="0">Height</button>
-			<button class="updateGraph" data-graph="1">Weight</button>
-		</article>
+		<article class="uk-width-1-1"> <!--create an article with two buttons, one to display the Height chart and the other to display the Weight chart-->
+			<button class="updateGraph" data-graph="0">Height</button> <!--when this button is clicked, it will display a chart containing Height data-->
+			<button class="updateGraph" data-graph="1">Weight</button> <!--when this button is clicked, it will display a chart containing Weight data-->
+		</article> <!--end article-->
 	
-		<article class="uk-width-1-1 container chart" id="leftGraph">Chart 1/2</article>
+		<article class="uk-width-1-1 container chart" id="leftGraph">Chart 1/2</article>  <!--create a chart that will change between Height info and weight info based upon user button clicks-->
 
-	</section>
-	<section class="uk-width-1-2" style="background-color:green;">
-		<article class="uk-width-1-2 container">
+	</section> <!--end section-->
+	<section class="uk-width-1-2" style="background-color:green;"> <!--create another section on the right containing Cholesterol and Blood Sugar information-->
+		<article class="uk-width-1-2 container"> <!--create a Cholesterol article-->
 			Cholesterol</br>
 			<p id="userCholesterol"></p>
 		</article>
-		<article class="uk-width-1-2 container">
+		<article class="uk-width-1-2 container"> <!--create a Blood Sugar article-->
 			Blood Sugar</br>
 			<p id="userBloodSugar"></p>
 		</article>
 		
 		<article class="uk-width-1-1">
-			<button class="updateGraph" data-graph="2">Cholesterol</button>
-			<button class="updateGraph" data-graph="3">Blood Sugar</button>
+			<button class="updateGraph" data-graph="2">Cholesterol</button> <!--when this button is clicked, it will display a chart containing Cholesterol data-->
+			<button class="updateGraph" data-graph="3">Blood Sugar</button> <!--when this button is clicked, it will display -->
 		</article>
 		
 		<article class="uk-width-1-1 container chart" id="rightGraph">Chart 3/4</article>
@@ -75,6 +77,6 @@
 </section>
 <footer class="uk-container"></footer>
 </body>
-<script src="js/highcharts.js"></script>
-<script src="js/userJS.js"></script>
+<script src="js/highcharts.js"></script> <!--import charts scripts-->
+<script src="js/userJS.js"></script> <!--import user JavaScript-->
 </html>
