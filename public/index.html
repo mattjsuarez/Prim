@@ -25,9 +25,8 @@
 				<p id="userInsurance"></p>
 				<p class="infoText">Schedule an appointment</p>
 				<form id="scheduleForm" class="uk-form">
-					<input type="text" placeholder="Choose doctor">
 					<input type="text" placeholder="Choose day" data-uk-datepicker="{format:'YYYY-MM-DD'}">
-					<input type="submit" value="Submit request">					
+					<input class="uk-button" type="submit" value="Submit request">					
 				</form>
 
 			</article>
@@ -36,44 +35,43 @@
 </header>
 
 <section id="mainPanel" class="uk-width-1-1">
-	<section class="uk-width-1-2" style="background-color:blue;">
-		<article class="uk-width-1-2 container">
+	<section class="uk-width-1-2">
+		<article class="uk-width-1-2 container brief">
 			Height</br>
-			<p id="userHeight"></p>
+			<span id="userHeight"></span> kg
 		</article>
-		<article class="uk-width-1-2 container">
+		<article class="uk-width-1-2 container brief">
 			Weight</br>
-			<p id="userWeight"></p>
+			<span id="userWeight"></span> cm
 		</article>
 
 		<article class="uk-width-1-1">
-			<button class="updateGraph" data-graph="0">Height</button>
-			<button class="updateGraph" data-graph="1">Weight</button>
+			<button class="updateGraph uk-button selected" data-graph="0"><i class="fa fa-area-chart"></i>Height</button>
+			<button class="updateGraph uk-button" data-graph="1"><i class="fa fa-area-chart"></i>Weight</button>
 		</article>
 	
-		<article class="uk-width-1-1 container chart" id="leftGraph">Chart 1/2</article>
+		<article class="uk-width-1-1 container chart" id="leftGraph"></article>
 
 	</section>
-	<section class="uk-width-1-2" style="background-color:green;">
-		<article class="uk-width-1-2 container">
+	<section class="uk-width-1-2">
+		<article class="uk-width-1-2 container brief">
 			Cholesterol</br>
-			<p id="userCholesterol"></p>
+			<span id="userCholesterol"></span> mmol/L
 		</article>
-		<article class="uk-width-1-2 container">
+		<article class="uk-width-1-2 container brief">
 			Blood Sugar</br>
-			<p id="userBloodSugar"></p>
+			<span id="userBloodSugar"></span> ml/dL
 		</article>
 		
 		<article class="uk-width-1-1">
-			<button class="updateGraph" data-graph="2">Cholesterol</button>
-			<button class="updateGraph" data-graph="3">Blood Sugar</button>
+			<button class="updateGraph uk-button selected" data-graph="2"><i class="fa fa-area-chart"></i>Cholesterol</button>
+			<button class="updateGraph uk-button" data-graph="3"><i class="fa fa-area-chart"></i>Blood Sugar</button>
 		</article>
 		
-		<article class="uk-width-1-1 container chart" id="rightGraph">Chart 3/4</article>
+		<article class="uk-width-1-1 container chart" id="rightGraph"></article>
 
 	</section>
 </section>
-<footer class="uk-container"></footer>
 </body>
 <script src="js/highcharts.js"></script>
 <script src="js/userJS.js"></script>

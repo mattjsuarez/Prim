@@ -3,10 +3,11 @@
 	padding:0px;
 }
 body {
-	background-color: black;
+	background-color:#454857;
 	text-align: center;
 }
-header{
+header {
+	background-color:black;
 	height:50px;
 	text-align: left;
 }
@@ -19,7 +20,13 @@ i {
 }
 #sideNav {
 	color:white;
-	text-align: center;
+	text-align:center;
+	font-size:1.1em;
+}
+#scheduleForm>input {
+	color:black;
+	font-weight:bold;
+	margin:3px;
 }
 #sideNav>article {
 	padding-top:50px;
@@ -32,20 +39,33 @@ i {
 	left:-227px !important;
 }
 #mainPanel {
-	border:1px solid green;
+	background-color:#454857;
+	overflow: auto;
 }
 #mainPanel>section {
 	float:left;
 	overflow:auto;
 	height:700px;
+	color:#BEE2E7;
+}
+.brief {
+	padding:25px;
+	font-size:2.5em;
+	line-height:37px;
 }
 #mainPanel>section>article {
 	float:left;
 }
 .container {
-	border:1px solid white;
 	height:150px;
 }
 .chart {
 	height:400px !important;
+}
+.updateGraph {
+	font-size:1.7em;
+	margin:10px;
+}
+.selected {
+	color:#8F002E !important;
 }

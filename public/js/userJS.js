@@ -4,6 +4,9 @@ $(document).ready(function() {
 		requestSideBar();
 		appointmentForm();
 		loadGraph();
+		Highcharts.setOptions({
+        	colors: ['#4F57AA']
+    	});
 });
 
 var requestSideBar = function() {
@@ -19,8 +22,9 @@ var requestSideBar = function() {
 };
 var loadGraph = function() {
 	$(".updateGraph").click(function() {
+		$(this).addClass("selected");
+		$(this).siblings().removeClass("selected");
 		var graphID = $(this).data("graph");
-		console.log(graphID);
 		var request = $.ajax({
 			url:"/retrieveSingleGraph/"+userID+"/"+graphID,
 			success:function(msg) {
@@ -34,13 +38,11 @@ var loadGraph = function() {
 }
 var updateGraph = function(graphID, msg) {
 	var graph = graphID;
-	console.log(msg);
 	var gData=msg.match(/'([^'']+)'/)[1];
 	var graphData = gData.split(",");
 	graphData = graphData.map(function(item) {
 		return parseInt(item,10);
 	});
-	console.log(graphData);
 	if(graph==0 || graph==1) {
 		var container = $("#leftGraph");
 	} else if (graph==2 || graph==3) {
@@ -111,7 +113,6 @@ var initialGraphs = function(leftGraph,rightGraph) {
 };
 var appointmentForm = function() {
 	$("#scheduleForm").submit(function(e) {
-		console.log($("input")[1].value);
 		var request = $.ajax({
 			url:"/schedule/"+$("input")[0].value+"/"+$("input")[1].value+"/"+userID,
 			success:function() {
