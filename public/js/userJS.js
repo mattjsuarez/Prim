@@ -1,5 +1,6 @@
 var userID = 0;	//Hardcoded for demo and debugging purposes
 
+// set up the page
 $(document).ready(function() {
 		requestSideBar();
 		appointmentForm();
@@ -9,6 +10,7 @@ $(document).ready(function() {
     	});
 });
 
+//fetch the user data
 var requestSideBar = function() {
 	var request = $.ajax({
 		url:"/patientData/"+userID,
@@ -20,6 +22,8 @@ var requestSideBar = function() {
 		}
 	});
 };
+
+// setup graph by calling other functions
 var loadGraph = function() {
 	$(".updateGraph").click(function() {
 		$(this).addClass("selected");
@@ -36,6 +40,8 @@ var loadGraph = function() {
 		});
 	});
 }
+
+//create 1 graph with the data passed to it
 var updateGraph = function(graphID, msg) {
 	var graph = graphID;
 	var gData=msg.match(/'([^'']+)'/)[1];
@@ -60,6 +66,8 @@ var updateGraph = function(graphID, msg) {
         }]
     });
 }
+
+//setup the page with user's data
 var initialData = function(patientData) {
 	var userData = patientData;
 	userData = JSON.parse(userData);
@@ -81,6 +89,7 @@ var initialData = function(patientData) {
 	$("#userBloodSugar").text(bsArray[4]);
 	initialGraphs(heightArray,chArray);
 };
+//create 2 graphs on the page with intial months
 var initialGraphs = function(leftGraph,rightGraph) {
 	var leftData = leftGraph.map(function(item) {
 		return parseInt(item,10);
@@ -111,6 +120,7 @@ var initialGraphs = function(leftGraph,rightGraph) {
         }]
     });
 };
+//ajax call for creating an appointment
 var appointmentForm = function() {
 	$("#scheduleForm").submit(function(e) {
 		var request = $.ajax({
