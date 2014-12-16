@@ -24,8 +24,7 @@ router.get('/schedule/:docID/:date/:userID', function(req, res) { //query the da
 	var userID = req.param("userID"); //retrieve the userID parameter
 	c.query("INSERT INTO DoctorPatients (PatientID,DoctorID,LastVisit) VALUES (:userID,:docID,:date)",{userID:userID,docID:docID,date:date}).on('result', function(res) {
 		res.on('error', function(err) { //if the query returns an error,...
-			//IVAN, CHANGE INSIDE HERE
-			console.log('Result error: ' + inspect(err));
+			res.status(409).send("Appointment scheduling conflict!");
 		}).on('end', function(info) { //if the query ends successfully,...
 			console.log('Successful termination of query');
 		});
