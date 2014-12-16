@@ -12,11 +12,9 @@
 	<script src="js/uikit.js"></script>
 	<script src="js/components/datepicker.js"></script>
 </head>
-
 <body>
 <header class="uk-width-1-1">
 	<a href="#sideNav" data-uk-offcanvas><i class="fa fa-gears"></i></a>
-	<!-- Side bar for scheduling appointment setc. -->
 	<section id="sideNav" class="uk-offcanvas">
 		<article class="uk-offcanvas-bar">
 			<article id="userProfile">
@@ -25,12 +23,9 @@
 				<p id="userGender"></p>
 				<p id="userID"></p>
 				<p id="userInsurance"></p>
-				<!-- form to scheduule a new apointment -->
 				<p class="infoText">Schedule an appointment</p>
 				<form id="scheduleForm" class="uk-form">
-					<div class="uk-autocomplete uk-form" data-uk-autocomplete="{source:'js/doctors.json'}">
-						<input type="text" placeholder="Choose doctor">
-					</div>
+					<input type="text" placeholder="Choose doctor">
 					<input type="text" placeholder="Choose day" data-uk-datepicker="{format:'YYYY-MM-DD'}">
 					<input type="submit" value="Submit request">					
 				</form>
@@ -40,7 +35,6 @@
 	</section>
 </header>
 
-<!-- chart of User's weight over time -->
 <section id="mainPanel" class="uk-width-1-1">
 	<section class="uk-width-1-2" style="background-color:blue;">
 		<article class="uk-width-1-2 container">
@@ -53,15 +47,13 @@
 		</article>
 
 		<article class="uk-width-1-1">
-			<button>Height</button>
-			<button>Weight</button>
+			<button class="updateGraph" data-graph="0">Height</button>
+			<button class="updateGraph" data-graph="1">Weight</button>
 		</article>
 	
 		<article class="uk-width-1-1 container chart" id="leftGraph">Chart 1/2</article>
 
 	</section>
-
-	<!-- chart for user's cholesterol over time-->
 	<section class="uk-width-1-2" style="background-color:green;">
 		<article class="uk-width-1-2 container">
 			Cholesterol</br>
@@ -73,8 +65,8 @@
 		</article>
 		
 		<article class="uk-width-1-1">
-			<button>Cholesterol</button>
-			<button>Blood Sugar</button>
+			<button class="updateGraph" data-graph="2">Cholesterol</button>
+			<button class="updateGraph" data-graph="3">Blood Sugar</button>
 		</article>
 		
 		<article class="uk-width-1-1 container chart" id="rightGraph">Chart 3/4</article>

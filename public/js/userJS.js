@@ -3,6 +3,7 @@ var userID = 0;	//Hardcoded for demo and debugging purposes
 $(document).ready(function() {
 		requestSideBar();
 		appointmentForm();
+		loadGraph();
 });
 
 var requestSideBar = function() {
@@ -16,6 +17,47 @@ var requestSideBar = function() {
 		}
 	});
 };
+var loadGraph = function() {
+	$(".updateGraph").click(function() {
+		var graphID = $(this).data("graph");
+		console.log(graphID);
+		var request = $.ajax({
+			url:"/retrieveSingleGraph/"+userID+"/"+graphID,
+			success:function(msg) {
+				updateGraph(graphID,msg);
+			},
+			fail:function(jqXHR, textStatus, errorThrown) {
+				console.log("AJAX request error thrown:"+errorThrown);
+			}
+		});
+	});
+}
+var updateGraph = function(graphID, msg) {
+	var graph = graphID;
+	console.log(msg);
+	var gData=msg.match(/'([^'']+)'/)[1];
+	var graphData = gData.split(",");
+	graphData = graphData.map(function(item) {
+		return parseInt(item,10);
+	});
+	console.log(graphData);
+	if(graph==0 || graph==1) {
+		var container = $("#leftGraph");
+	} else if (graph==2 || graph==3) {
+		var container = $("#rightGraph");
+	}
+	container.highcharts({
+        chart: {
+            type: 'column'
+        },
+        xAxis: {
+            categories: ['August','September','October','November','December']
+        },
+        series: [{
+            data: graphData
+        }]
+    });
+}
 var initialData = function(patientData) {
 	var userData = patientData;
 	userData = JSON.parse(userData);
@@ -52,7 +94,6 @@ var initialGraphs = function(leftGraph,rightGraph) {
             categories: ['August','September','October','November','December']
         },
         series: [{
-            name: 'Height',
             data: leftData
         }]
     });
@@ -64,7 +105,6 @@ var initialGraphs = function(leftGraph,rightGraph) {
             categories: ['August','September','October','November','December']
         },
         series: [{
-            name: 'Height',
             data: rightData
         }]
     });

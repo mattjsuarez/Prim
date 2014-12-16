@@ -22,28 +22,32 @@ router.get('/schedule/:docID/:date/:userID', function(req, res) {
 	var docID = req.param("docID");
 	var date = req.param("date");
 	var userID = req.param("userID");
-	console.log(typeof(date));
-	c.query("INSERT INTO DoctorPatients (PatientID,DoctorID,LastVisit) VALUES (:userID,:docID,:date)",{userID:userID,docID:docID,userID:userID});
+	c.query("INSERT INTO DoctorPatients (PatientID,DoctorID,LastVisit) VALUES (:userID,:docID,:date)",{userID:userID,docID:docID,date:date});
 });
 
-router.get('/patientInfo/:id', function(req, res){
-	var id = req.param("id");
-	var toReturn = "";
-	var patientInfo = c.query("SELECT Name FROM Patients WHERE Id = :id", {id:id});
-	patientInfo.on('result', function(res) {
-		res.on('row', function(row){
+router.get('/retrieveSingleGraph/:userID/:graphID/',function(req,res) {
+	var userID = req.param("userID");
+	var graphID = req.param("graphID");
+	switch(graphID) {
+		case "0":
+			var graphInfo = c.query("SELECT Height FROM Patients WHERE Id=:id",{id:userID});
+			break;
+		case "1":
+			var graphInfo = c.query("SELECT Weight FROM Patients WHERE Id=:id",{id:userID});
+			break;
+		case "2":
+			var graphInfo = c.query("SELECT Cholesterol FROM Patients WHERE Id=:id",{id:userID});
+			break;
+		case "3":
+			var graphInfo = c.query("SELECT BloodSugar FROM Patients WHERE Id=:id",{id:userID});
+			break;
+	}
+	graphInfo.on('result', function(gRow) {
+		gRow.on('row', function(row) {
 			var obj = JSON.stringify(inspect(row));
-			toReturn = toReturn + obj + "," + id + ",";
-			patientInfo = c.query("SELECT PCPid FROM Patients WHERE Id = :id", {id:id});
-			patientInfo.on('result', function(res) {
-				res.on('row', function(row){
-					obj = JSON.stringify(inspect(row));
-					toReturn = toReturn + obj;
-					res.send(toReturn);
-				});
-			});
+			res.send(obj);
 		});
-	} );
+	});
 });
 
 router.get('/patientData/:patID',function(req,res) {
@@ -53,33 +57,8 @@ router.get('/patientData/:patID',function(req,res) {
 	patientInfo.on('result', function(patRow) {
 		patRow.on('row', function(row) {
 			var obj = JSON.stringify(inspect(row));
-			console.log(obj);
 			res.send(obj); //return patient information
 		});
 	});
 });
-
-router.get('/retrieveGraphData/:id', function(req, res) {
-	var id = req.param("id");
-	var i = 0;
-	var dataArray = new Array(4);
-	var age = c.query("SELECT Age FROM Patients WHERE Id= :id", {id:id});
-	age.on('result', function(res) {
-		res.on('row', function(row) {
-			var obj0 = JSON.stringify(inspect(row));
-			dataArray[0] = obj0;
-			//res.on('end') something something second/third/fourth query. res.send(array)
-		});
-	});
-	var cholesterol = c.query("SELECT Cholesterol FROM Patients WHERE Id= :id", {id:id});
-	cholesterol.on('result', function(res) {
-		res.on('row', function(row) {
-			var obj1 = JSON.stringify(inspect(row));
-			dataArray[1] = obj1;
-		});
-	});
-	var height = c.query("SELECT Height FROM Patients WHERE Id= :id", {id:id});
-	var weight = c.query("SELECT Weight FROM Patients WHERE Id= :id", {id:id});
-});
-
 module.exports = router;
