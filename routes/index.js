@@ -9,20 +9,21 @@ var c = new Client();
 c.connect({
     host: 'localhost',
     user: 'mjsuarez',
-    password: 'mjsuarez_pw',
-    db: 'mjsuarez_db'
+    password: 'mjsuarez_pw', //password to access mjsuarez_db
+    db: 'mjsuarez_db' //mjsuarez_db tables
 });
 
 //connect to index.jade file to render it
 router.get('/', function(req, res) {
-  res.render('../views/index');
+  res.render('../views/index'); //render jade template in the views directory
 });
 
-router.get('/schedule/:docID/:date/:userID', function(req, res) {
-	var docID = req.param("docID");
-	var date = req.param("date");
-	var userID = req.param("userID");
-	c.query("INSERT INTO DoctorPatients (PatientID,DoctorID,LastVisit) VALUES (:userID,:docID,:date)",{userID:userID,docID:docID,date:date});
+router.get('/schedule/:docID/:date/:userID', function(req, res) { //query the database. insert information into DoctorPatients table
+	var docID = req.param("docID"); //retrieve the docID parameter
+	var date = req.param("date"); //retrieve the date parameter
+	var userID = req.param("userID"); //retrieve the userID parameter
+	c.query("INSERT INTO DoctorPatients (PatientID,DoctorID,LastVisit) VALUES (:userID,:docID,:date)",{userID:userID,docID:docID,date:date}); /* generate a query
+	that inserts information into the database*/
 });
 
 router.get('/retrieveSingleGraph/:userID/:graphID/',function(req,res) {
