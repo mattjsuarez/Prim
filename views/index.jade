@@ -1,0 +1,116 @@
+doctype html
+html
+  head
+    // start head
+    title Your Dashboard
+    // title of page
+    // import style sheets
+    link(rel='stylesheet', type='text/css', href='css/font-awesome.css', media='all')
+    | &#x9;
+    link(rel='stylesheet', type='text/css', href='css/uikit.css')
+    | &#x9;
+    link(rel='stylesheet', type='text/css', href='css/components/datepicker.css')
+    | &#x9;
+    link(rel='stylesheet', type='text/css', href='css/userCSS.css', media='all')
+    | &#x9;
+    link(rel='shortcut icon', href='img/favicon.ico', type='image/x-icon')
+    | &#x9;
+    link(rel='icon', href='img/favicon.ico', type='image/x-icon')
+    // import an icon
+    script(src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
+    // import JavaScript and AJAX that we will use
+    script(src='js/uikit.js')
+    | &#x9;
+    script(src='js/components/datepicker.js')
+  // end head
+  body
+    // start body
+    header.uk-width-1-1
+      // start header
+      a(href='#sideNav', data-uk-offcanvas='')
+        i.fa.fa-gears
+      // hyperlink tag
+      section#sideNav.uk-offcanvas
+        // create a section of the website. It's a sidebar for creating appointments
+        article.uk-offcanvas-bar
+          article#userProfile
+            p#userName
+            | &#x9;&#x9;&#x9;&#x9;
+            p#userDOB
+            | &#x9;&#x9;&#x9;&#x9;
+            p#userGender
+            | &#x9;&#x9;&#x9;&#x9;
+            p#userID
+            | &#x9;&#x9;&#x9;&#x9;
+            p#userInsurance
+            | &#x9;&#x9;&#x9;&#x9;
+            p.infoText Schedule an appointment
+            // Form to schedule an appointment
+            form#scheduleForm.uk-form
+              input(type='text', placeholder='Choose day', data-uk-datepicker="{format:'YYYY-MM-DD'}")
+              | &#x9;&#x9;&#x9;&#x9;&#x9;
+              input.uk-button(type='submit', value='Submit request')
+    // Graphs for user's weight and height
+    section#mainPanel.uk-width-1-1
+      section.uk-width-1-2
+        article.uk-width-1-2.container.brief
+          | Height
+          br
+          | &#x9;&#x9;&#x9;
+          span#userHeight
+          |  kg
+        | &#x9;&#x9;
+        article.uk-width-1-2.container.brief
+          | Weight
+          br
+          | &#x9;&#x9;&#x9;
+          span#userWeight
+          |  cm
+        | &#x9;&#x9;
+        article.uk-width-1-1
+          button.updateGraph.uk-button.selected(data-graph='0')
+            i.fa.fa-area-chart
+            | Height
+          // button to make the graph for height
+          button.updateGraph.uk-button(data-graph='1')
+            i.fa.fa-area-chart
+            | Weight
+          // button to make the graph for weight
+        | &#x9;
+        | &#x9;&#x9;
+        article#leftGraph.uk-width-1-1.container.chart
+      | +
+      // Graphs for the user's Blodd Sugar and Cholesterol
+      section.uk-width-1-2
+        article.uk-width-1-2.container.brief
+          | Cholesterol
+          br
+          | &#x9;&#x9;&#x9;
+          span#userCholesterol
+          |  mmol/L
+        | &#x9;&#x9;
+        article.uk-width-1-2.container.brief
+          | Blood Sugar
+          br
+          | &#x9;&#x9;&#x9;
+          span#userBloodSugar
+          |  ml/dL
+        | &#x9;&#x9;
+        | &#x9;&#x9;
+        article.uk-width-1-1
+          button.updateGraph.uk-button.selected(data-graph='2')
+            i.fa.fa-area-chart
+            | Cholesterol
+          // button to change the graph to cholesterol
+          button.updateGraph.uk-button(data-graph='3')
+            i.fa.fa-area-chart
+            | Blood Sugar
+          // button to change the graph to blood sugar
+        | &#x9;&#x9;
+        | &#x9;&#x9;
+        article#rightGraph.uk-width-1-1.container.chart
+    footer
+      // Plain Text
+      | Created by PRIM
+  script(src='js/highcharts.js')
+  script(src='js/userJS.js')
